@@ -20,7 +20,7 @@ let unwatchedElements = $('#unwatchedView, #unwatchedSpan');
 let watchedElements = $('#watchedView, #watchedSpan');
 let favoritesElements = $('#favoritesView, #favoritesSpan');
 let movieTemplate = require('../templates/movieTemplate.hbs');
-let see;
+let see = [];
 
 dbInteractions.getMovies().then (function(data){
 	(populateCards.createCards(data));
@@ -212,13 +212,24 @@ $("#watched").click(function(){
     watched.getWatched().then(function(data){
     	console.log("data", data);
     	for (var prop in data) {
-    		see = Object.keys(data);
+    		see.push(data[prop]);
     	}
     	console.log("see", see);
+    	$(see).each(function(i) {
+    		console.log("see[i]", see[i]);
+        	populateCards.watchedTemplate(see[i]);
+        	showWatched();
+    	});
     });
-        // populateCards.watchedTemplate(data);
-        // showWatched();
 
+});
+
+// Show Favorites
+$('#favorites').click(function() {
+	console.log('favorites click');
+	dbInteractions.getFavs().then(function(data) {
+		console.log("data", data);
+	});
 });
 
 //rating functionality

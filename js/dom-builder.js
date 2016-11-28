@@ -37,7 +37,7 @@ function createCards (data) {
 
 function watchedTemplate (data){
     let watchedInfo = movieTemplate(data);
-    $("#watchedView").html(watchedInfo);
+    $("#watchedView").append(watchedInfo);
 }
 
 module.exports = {createCards, watchedTemplate};
