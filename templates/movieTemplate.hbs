@@ -1,6 +1,4 @@
-{{# each Search}}
-
-<div id='{{@ index}}' class='col-offset-md-1 col-md-3'>
+<div id='{{imdbID}}' class='col-offset-md-1 col-md-3'>
     <img class='poster' src='{{Poster}}'>
     <p class='title'>{{Title}}</p>
     <p class='year'>{{Year}}</p>
@@ -8,6 +6,3 @@
     <p class="userRated">{{userRating}}</p>
     <button class='delete-btn' id='delete{{@ index}}'>Delete</button>
 </div>
-
-
-{{/each}}

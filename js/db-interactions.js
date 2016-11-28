@@ -1,5 +1,7 @@
 "use strict";
 
+let signIn = require('./user');
+
 //function used to load movies onto DOM on splash page
 function getMovies () {
 	return new Promise( (resolve, reject) => {
@@ -76,6 +78,19 @@ function setFavs(favDetails, movieToFav){
 	});
 }
 
+// Function to get Favorites
+function getFavs() {
+	let currentUser = signIn.getUser();
+	console.log("currentUser", currentUser);
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url: `https://imdb-group.firebaseio.com/imdb-group/movies.json?orderBy="Title"&equalTo="Batman"`
+        }).done(function(data){
+            resolve(data);
+        });
+    });
+}
+
 //function to set watched movies
 
 function setWatched(movieDetails, movieWatched){
@@ -91,4 +106,7 @@ function setWatched(movieDetails, movieWatched){
 }
 
 
-module.exports = {getMovies, saveMovies, storeMovies, getUnwatchedMovies, deleteMovies, setFavs, setWatched};
+module.exports = {getMovies, saveMovies, storeMovies, getUnwatchedMovies, deleteMovies, setFavs, setWatched, getFavs};
+
+
+
